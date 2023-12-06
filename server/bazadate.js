@@ -1,4 +1,4 @@
-const {Sequelize, DataTypes} = require('sequelize');
+import { DataTypes, Sequelize } from "sequelize";
 
 const sequelize = new Sequelize({
     dialect: "sqlite",
@@ -55,7 +55,6 @@ const Bugs = sequelize.define('bugs', {
 });
 
 Bugs.belongsTo(Users); // This adds a userID column to the Bugs table
-Bugs.belongsTo(Projects); //This adds a project
 
 const Projects = sequelize.define('projects', {
     id: {
@@ -75,6 +74,7 @@ const Projects = sequelize.define('projects', {
 });
 
 Projects.belongsTo(Users); // This adds a userID column to the Bugs table
+Bugs.belongsTo(Projects); // This adds a project
 
 async function initialize(){
     await sequelize.authenticate();

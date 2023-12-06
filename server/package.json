@@ -1,5 +1,5 @@
 {
-  "name": "BugTracker",
+  "name": "bug-tracker",
   "version": "1.0.0",
   "scripts": {
     "server": "nodemon server.js"
