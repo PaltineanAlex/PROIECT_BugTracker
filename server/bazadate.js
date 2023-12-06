@@ -1,4 +1,4 @@
-import { DataTypes, Sequelize } from "sequelize";
+const {Sequelize, DataTypes} = require('sequelize');
 
 const sequelize = new Sequelize({
     dialect: "sqlite",
@@ -10,67 +10,78 @@ const sequelize = new Sequelize({
 
 const Users = sequelize.define('users', {
     id: {
-        type: sequelize.UUID,
-        allowNull: false,
+        type: DataTypes.UUID,
         primaryKey: true,
-        defaultValue: sequelize.UUIDV4
+        allowNull: false,
+        defaultValue: DataTypes.UUIDV4
     },
     username: {
-        type: sequelize.STRING,
-        allowNull: false
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true
     },
     password: {
-        type: sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false
     },
     usertype: {
-        type: sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false
     }
-});
+},
+{
+    initialAutoIncrement: 1,
+}
+);
 
 const Bugs = sequelize.define('bugs', {
     id: {
-        type: sequelize.UUID,
-        allowNull: false,
+        type: DataTypes.UUID,
         primaryKey: true,
-        defaultValue: sequelize.UUIDV4
+        allowNull: false,
+        defaultValue: DataTypes.UUIDV4
     },
     name: {
-        type: sequelize.STRING,
-        allowNull: false
+        type: DataTypes.STRING,
+        allowNull: false,
     },
     status: {
-        type: sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false
     },
     priority: {
-        type: sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false
     },
     creationdate: {
-        type: sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false
     }
+},
+{
+    initialAutoIncrement: 1,
 });
 
 Bugs.belongsTo(Users); // This adds a userID column to the Bugs table
 
 const Projects = sequelize.define('projects', {
     id: {
-        type: sequelize.UUID,
-        allowNull: false,
+        type: DataTypes.UUID,
         primaryKey: true,
-        defaultValue: sequelize.UUIDV4
+        allowNull: false,
+        defaultValue: DataTypes.UUIDV4
     },
     name: {
-        type: sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false
     },
     link: {
-        type: sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false
     }
+},
+{
+    initialAutoIncrement: 1,
 });
 
 Projects.belongsTo(Users); // This adds a userID column to the Bugs table

@@ -223,7 +223,7 @@ async function deleteBug(request, response) {
     
     if (bug) {
       await bug.destroy();
-      response.status(204).send();
+      response.status(202).send();
     } else {
       response.status(404).json({ error: 'Bug not found' });
     }
@@ -240,7 +240,7 @@ async function deleteUser(request, response) {
     
     if (user) {
       await user.destroy();
-      response.status(204).send();
+      response.status(202).send();
     } else {
       response.status(404).json({ error: 'User not found' });
     }
@@ -257,7 +257,7 @@ async function deleteProject(request, response) {
     
     if (project) {
       await project.destroy();
-      response.status(204).send();
+      response.status(202).send();
     } else {
       response.status(404).json({ error: 'Project not found' });
     }

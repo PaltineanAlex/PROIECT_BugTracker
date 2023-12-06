@@ -2,6 +2,7 @@ const express = require('express');
 const {resolve, join} = require('path');
 const { json, urlencoded } = require('express');
 const { initialize } = require('./bazadate');
+const router = require('./router')
 const PORT = process.env.PORT || 8080;
 
 express()
