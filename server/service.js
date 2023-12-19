@@ -266,6 +266,27 @@ async function deleteProject(request, response) {
   }
 }
 
+async function authenticateUser(request, response) {
+  try {
+    const { username, password } = request.body;
+    
+    const user = await Users.findOne({
+      where: {
+        username: username,
+        password: password,
+      },
+    });
+    
+    if (user) {
+      response.status(200).json({ success: true, message: 'Autentificare reușită.' });
+    } else {
+      response.status(401).json({ error: 'Utilizator sau parolă incorecte.' });
+    }
+  } catch (error) {
+    response.status(500).json({ error });
+  }
+}
+
 module.exports = {
   getBug,
   getBugs,
@@ -281,4 +302,5 @@ module.exports = {
   deleteBug,
   deleteUser,
   deleteProject,
+  authenticateUser,
 };

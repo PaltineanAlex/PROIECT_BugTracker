@@ -15,6 +15,7 @@ const {
   deleteBug,
   deleteUser,
   deleteProject,
+  authenticateUser,
 } = require('./service'); // Adjust the path based on your actual file structure
 
 // Routes for Bugs
@@ -36,5 +37,8 @@ router.get('/projects/user/:id', getProjectsByUserId);
 router.post('/projects', postProject);
 router.put('/projects/:id', putProject);
 router.delete('/projects/:id', deleteProject);
+
+//Authentificate
+router.post('/authenticate', authenticateUser);
 
 module.exports = router;
